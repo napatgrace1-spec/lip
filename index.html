@@ -1,39 +1,799 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>My First Website</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eco Lip | Sustainable Lip Care</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-soft: #0f172a;
+      --card: #0b1220;
+      --accent: #22c55e;
+      --accent-soft: rgba(34, 197, 94, 0.12);
+      --accent-strong: #4ade80;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-soft: rgba(148, 163, 184, 0.35);
+      --shadow-soft: 0 18px 50px rgba(15, 23, 42, 0.9);
+      --radius-xl: 22px;
+      --radius-lg: 16px;
+      --radius-pill: 999px;
+      --transition-fast: 0.18s ease-out;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Prompt", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #1f2937 0, #020617 50%, #000 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Layout */
+    .page-wrapper {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px 18px 40px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 8px 0 18px;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background: radial-gradient(circle at 20% 0, #bbf7d0 0, #22c55e 40%, #14532d 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #f9fafb;
+      font-weight: 700;
+      font-size: 18px;
+      box-shadow: 0 10px 25px rgba(34, 197, 94, 0.4);
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .logo-text span:first-child {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      font-size: 18px;
+    }
+
+    .logo-text span:last-child {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    nav {
+      display: flex;
+      gap: 18px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    nav a {
+      text-decoration: none;
+      color: inherit;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: all var(--transition-fast);
+    }
+
+    nav a:hover {
+      color: #e5e7eb;
+      border-color: rgba(148, 163, 184, 0.4);
+      background-color: rgba(15, 23, 42, 0.8);
+    }
+
+    .github-btn {
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      padding: 6px 14px;
+      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      color: var(--text-main);
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(10px);
+      transition: all var(--transition-fast);
+    }
+
+    .github-btn:hover {
+      transform: translateY(-1px);
+      border-color: var(--accent-strong);
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.9);
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 26px;
+      margin-top: 10px;
+      align-items: center;
+    }
+
+    .hero-text {
+      padding: 22px 22px 24px;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(8, 47, 35, 0.9));
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      font-size: 11px;
+      color: var(--accent-strong);
+      margin-bottom: 12px;
+    }
+
+    .hero-pill span {
+      color: var(--text-muted);
+    }
+
+    .hero h1 {
+      font-size: clamp(26px, 4vw, 32px);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .hero h1 .highlight {
+      background: linear-gradient(to right, #bbf7d0, #4ade80, #22c55e);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin-bottom: 18px;
+    }
+
+    .hero-subtitle strong {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .btn-primary {
+      border: none;
+      outline: none;
+      border-radius: var(--radius-pill);
+      padding: 9px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #022c22;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 14px 35px rgba(22, 163, 74, 0.55);
+      transition: all var(--transition-fast);
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px) translateX(0.5px);
+      box-shadow: 0 18px 40px rgba(22, 163, 74, 0.8);
+      filter: saturate(1.1);
+    }
+
+    .btn-ghost {
+      border-radius: var(--radius-pill);
+      padding: 9px 16px;
+      font-size: 13px;
+      cursor: pointer;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.8);
+      color: var(--text-main);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent-strong);
+      background: rgba(15, 23, 42, 1);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.95);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-meta span::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.9);
+    }
+
+    /* Hero visual card */
+    .hero-visual {
+      position: relative;
+    }
+
+    .product-card {
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at 0 0, rgba(190, 242, 100, 0.2) 0, #020617 40%, #000 100%);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      padding: 18px 18px 16px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .product-tag {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .product-main {
+      display: grid;
+      grid-template-columns: 1.05fr 1.3fr;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .product-visual {
+      position: relative;
+      padding: 10px;
+    }
+
+    .lip-tube {
+      width: 80px;
+      height: 180px;
+      border-radius: 28px;
+      margin: 0 auto;
+      background: linear-gradient(170deg, #bbf7d0 0, #22c55e 35%, #16a34a 65%, #064e3b 100%);
+      box-shadow: 0 18px 35px rgba(22, 163, 74, 0.7);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lip-tube::before {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border-radius: 24px;
+      background: linear-gradient(145deg, rgba(240, 253, 250, 0.7), rgba(22, 163, 74, 0.15));
+      mix-blend-mode: screen;
+      opacity: 0.9;
+    }
+
+    .lip-label {
+      position: absolute;
+      inset: 60px 10px 40px;
+      border-radius: 16px;
+      background: rgba(15, 23, 42, 0.3);
+      border: 1px solid rgba(248, 250, 252, 0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      color: #f9fafb;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .lip-label span:first-child {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      opacity: 0.8;
+    }
+
+    .lip-label span.highlight-text {
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      font-size: 12px;
+    }
+
+    .lip-shadow {
+      width: 84px;
+      height: 12px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(15, 23, 42, 0.6), transparent 70%);
+      margin: 10px auto 0;
+      filter: blur(2px);
+    }
+
+    .product-badges {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .product-badges span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 9px;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px dashed rgba(148, 163, 184, 0.5);
+      width: fit-content;
+    }
+
+    .product-badges span strong {
+      color: var(--accent-strong);
+      font-weight: 500;
+    }
+
+    .product-info-title {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .product-info-text {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .product-list {
+      display: grid;
+      gap: 4px;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .product-list li {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .product-list li::before {
+      content: "•";
+      color: var(--accent-strong);
+      font-size: 16px;
+      margin-top: -2px;
+    }
+
+    .product-footnote {
+      font-size: 11px;
+      color: var(--text-muted);
+      opacity: 0.8;
+    }
+
+    .product-glow {
+      position: absolute;
+      inset: -60%;
+      background: radial-gradient(circle at 10% -10%, rgba(190, 242, 100, 0.24), transparent 55%),
+        radial-gradient(circle at 110% 100%, rgba(45, 212, 191, 0.3), transparent 55%);
+      opacity: 0.8;
+      mix-blend-mode: screen;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Sections */
+    section {
+      margin-top: 32px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title span.badge {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--text-muted);
+    }
+
+    .section-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .feature-card {
+      border-radius: var(--radius-lg);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid var(--border-soft);
+      padding: 14px 14px 12px;
+      font-size: 12px;
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+        border-color var(--transition-fast), background 0.2s ease-out;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 1);
+      border-color: rgba(148, 163, 184, 0.9);
+      background: radial-gradient(circle at top, rgba(34, 197, 94, 0.12), rgba(15, 23, 42, 0.98));
+    }
+
+    .feature-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      background: rgba(34, 197, 94, 0.12);
+      margin-bottom: 6px;
+    }
+
+    .feature-title {
+      font-weight: 500;
+      margin-bottom: 4px;
+      font-size: 13px;
+    }
+
+    .feature-desc {
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .feature-tag {
+      font-size: 11px;
+      color: var(--accent-strong);
+      opacity: 0.9;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 30px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    footer a {
+      color: var(--accent-strong);
+      text-decoration: none;
+      opacity: 0.9;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 880px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-visual {
+        order: -1;
+      }
+    }
+
+    @media (max-width: 640px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      nav {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .features-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-text {
+        padding: 18px 16px 18px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header class="container">
-    <h1>สวัสดี นี่คือเว็บไซต์ของgrace</h1>
-    <nav>
-      <a href="#about">เกี่ยวกับ</a>
-      <a href="#contact">ติดต่อ</a>
-    </nav>
-  </header>
+  <div class="page-wrapper">
+    <header>
+      <div class="logo-wrap">
+        <div class="logo-icon">EL</div>
+        <div class="logo-text">
+          <span>Eco Lip</span>
+          <span>minimal waste • maximum care</span>
+        </div>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#features">Eco Benefits</a>
+        <a href="#dev">For Developers</a>
+        <button class="github-btn" onclick="window.open('https://github.com/your-username/eco-lip','_blank')">
+          <span>★ Star on GitHub</span>
+        </button>
+      </nav>
+    </header>
 
-  <main class="container">
-    <section id="about">
-      <h2>เกี่ยวกับ</h2>
-      <p>อันนี้ทดสอบนะ</p>
-      <button id="cta">กดทักทาย</button>
-    </section>
-    <section id="contact">
-      <h2>ติดต่อ</h2>
-      <ul>
-        <li>Email: napat.grace1@gmail.com(ทดสอบอย่าทักมา)</li>
-        <li>Facebook:เราไม่มีเดวใส่ของคนอื่น</li>
-      </ul>
-    </section>
-  </main>
+    <main>
+      <!-- HERO -->
+      <section class="hero" id="about">
+        <div class="hero-text">
+          <div class="hero-pill">
+            🌱 <strong>Eco-first Lip Care</strong>
+            <span>designed for sustainable living</span>
+          </div>
+          <h1>
+            Meet <span class="highlight">Eco Lip</span> —<br />
+            lip balm that cares for <span class="highlight">you</span> and the <span class="highlight">planet</span>.
+          </h1>
+          <p class="hero-subtitle">
+            <strong>Eco Lip</strong> คือโปรเจกต์ลิปบาล์มรักษ์โลก ที่เน้นใช้วัตถุดิบจากธรรมชาติ บรรจุภัณฑ์ลดขยะ
+            และระบบติดตามการใช้งานผ่าน GitHub เพื่อลด
+            <strong>carbon footprint</strong> ในชีวิตประจำวันอย่างเป็นรูปธรรม
+          </p>
 
-  <footer class="container">
-    <small>© 2025 Grace</small>
-  </footer>
+          <div class="hero-actions">
+            <a
+              class="btn-primary"
+              href="https://github.com/your-username/eco-lip"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View Project on GitHub
+              <span>↗</span>
+            </a>
+            <a class="btn-ghost" href="#dev">
+              Documentation
+              <span>▾</span>
+            </a>
+          </div>
 
-  <script src="script.js"></script>
+          <div class="hero-meta">
+            <span>Plastic-free & refill-ready</span>
+            <span>Open source formulation & design</span>
+          </div>
+        </div>
+
+        <!-- HERO VISUAL / PRODUCT CARD -->
+        <div class="hero-visual">
+          <div class="product-card">
+            <div class="product-glow"></div>
+            <div class="product-tag">
+              🍃 Eco Lip • Prototype v1.0
+            </div>
+            <div class="product-main">
+              <div class="product-visual">
+                <div class="lip-tube">
+                  <div class="lip-label">
+                    <span>natural</span>
+                    <span class="highlight-text">ECO LIP</span>
+                    <span>0% plastic • 100% care</span>
+                  </div>
+                </div>
+                <div class="lip-shadow"></div>
+              </div>
+              <div>
+                <div class="product-info-title">Sustainable lip care in one tiny tube.</div>
+                <p class="product-info-text">
+                  สูตรลิปบาล์มเน้นไขมันจากพืช ไร้พาราเบน และบรรจุภัณฑ์ที่ออกแบบให้
+                  <strong>นำกลับมาเติมซ้ำ (refill)</strong> ได้
+                  เพื่อช่วยลดขยะบรรจุภัณฑ์ในระยะยาว
+                </p>
+                <ul class="product-list">
+                  <li>บรรจุภัณฑ์แบบ refillable ลดการใช้พลาสติกครั้งเดียวทิ้ง</li>
+                  <li>สูตรเรียบง่าย เน้นส่วนผสมที่อ่านแล้วเข้าใจ</li>
+                  <li>ออกแบบให้ต่อยอดเป็นโปรเจกต์วิทยาศาสตร์ & STEM ได้</li>
+                </ul>
+                <div class="product-badges">
+                  <span>🌍 <strong>Goal:</strong> less waste, more impact</span>
+                  <span>🧪 <strong>For students:</strong> perfect for eco innovation projects</span>
+                </div>
+                <div class="product-footnote">*โปรเจกต์นี้ยังอยู่ในระหว่างการทดลองและพัฒนาอย่างต่อเนื่อง</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURES / ECO BENEFITS -->
+      <section id="features">
+        <div class="section-header">
+          <div class="section-title">
+            Eco Benefits
+            <span class="badge">Why Eco Lip?</span>
+          </div>
+          <p class="section-subtitle">
+            โฟกัสทั้งด้านสิ่งแวดล้อม ประสบการณ์ผู้ใช้ และการเรียนรู้เชิงวิทยาศาสตร์
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <article class="feature-card">
+            <div class="feature-icon">♻️</div>
+            <div class="feature-title">Low-waste Packaging</div>
+            <p class="feature-desc">
+              ใช้บรรจุภัณฑ์ที่ออกแบบให้เติมซ้ำได้ ลดจำนวนแท่งลิปที่ถูกทิ้ง
+              เหมาะกับการทำคำนวณด้านสิ่งแวดล้อม เช่น การลด CO₂ ต่อปี
+            </p>
+            <div class="feature-tag">Perfect for eco-math / SDG projects</div>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🧬</div>
+            <div class="feature-title">Science-ready Formulation</div>
+            <p class="feature-desc">
+              สูตรสามารถแตกเป็นส่วนประกอบพื้นฐาน (น้ำมัน, แว็กซ์, กลิ่น) เพื่อให้ทดลองเปรียบเทียบ
+              จุดหลอมเหลว ความแข็ง และความชุ่มชื้นได้ในห้องแล็บ
+            </p>
+            <div class="feature-tag">Ideal for chemistry & materials science</div>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🐾</div>
+            <div class="feature-title">Cruelty-free & Kind</div>
+            <p class="feature-desc">
+              แนวคิดมุ่งเน้นผลิตภัณฑ์ที่ไม่ทดลองกับสัตว์ และสามารถเลือกใช้วัตถุดิบจากพืชเพื่อรองรับสายวีแกนได้
+              ตามโจทย์ของแต่ละโรงเรียนหรือโครงงาน
+            </p>
+            <div class="feature-tag">Supports ethical & responsible innovation</div>
+          </article>
+        </div>
+      </section>
+
+      <!-- DEV SECTION -->
+      <section id="dev">
+        <div class="section-header">
+          <div class="section-title">
+            For Developers & Makers
+            <span class="badge">GitHub • Open Source</span>
+          </div>
+          <p class="section-subtitle">
+            ใช้ GitHub เป็นฐานเก็บสูตร แพ็กเกจดีไซน์ และเอกสารงานวิจัย / โครงงานวิทยาศาสตร์
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <article class="feature-card">
+            <div class="feature-icon">📦</div>
+            <div class="feature-title">Project Structure</div>
+            <p class="feature-desc">
+              แนะนำให้จัดโฟลเดอร์ เช่น <code>/formula</code>, <code>/packaging</code>, <code>/docs</code>,
+              <code>/data</code> เพื่อแยกสูตร การออกแบบ 3D และผลการทดลองอย่างเป็นระบบ
+            </p>
+            <div class="feature-tag">Clean & competition-friendly repo</div>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">📊</div>
+            <div class="feature-title">Data & Experiments</div>
+            <p class="feature-desc">
+              เก็บข้อมูล เช่น ความคงตัวของเนื้อลิปที่อุณหภูมิต่าง ๆ ความชุ่มชื้นของริมฝีปากก่อน–หลังใช้
+              และ feedback ผู้ใช้ในรูปแบบไฟล์ .csv เพื่อนำไปวิเคราะห์ต่อ
+            </p>
+            <div class="feature-tag">Ready for Excel / Python analysis</div>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🧾</div>
+            <div class="feature-title">Docs & Presentation</div>
+            <p class="feature-desc">
+              ใช้ GitHub Pages หน้านี้เป็น landing page สำหรับกรรมการ, ครู, หรือเพื่อน ๆ
+              พร้อมลิงก์ไปยังรายงานฉบับเต็มและสไลด์งานประกวด
+            </p>
+            <div class="feature-tag">One link for all your documents</div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> Eco Lip · Built with care & GitHub Pages</div>
+      <div>
+        Made by
+        <a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer">
+          your-username
+        </a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // แสดงปีปัจจุบันอัตโนมัติ
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
